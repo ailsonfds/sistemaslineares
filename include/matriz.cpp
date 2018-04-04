@@ -131,32 +131,32 @@ template<class U>
 std::istream& operator>>(std::istream &in, Matriz<U> &m){
 	size_t col = -1;
 	std::string str;
+	m.matriz.clear();
 	while(std::getline(in, str)){
+		// std::cout << str.size() << " | " << str << std::endl;
 		if(str.empty()){
-			in.get();
 			continue;
 		}
-		// std::cout << str.size() << " |" << str << std::endl;
 		std::istringstream input(str);
 		std::vector<U> line;
 		U element;
 		while(std::getline(input, str, m.sep)){
+			if(str.empty()) continue;
 			std::istringstream in_results(str);
 			in_results >> element;
 			if(!str.empty())line.push_back(element);
 			str.clear();
 		}
-		if(col == (size_t) -1){
+		if(col == (size_t) -1 && line.size() != 0){
 			col = line.size();
-			m.set_cols(col);
 		} else if(line.size() != col){
 			std::cerr << "ERRO!! Not a valid Enter" << std::endl;
 			abort();
 		}
 		m.matriz.push_back(line);
 	}
-	// std::cout << m.matriz.size();
-	m.set_rows(m.matriz.size());
+	m.rows = m.matriz.size();
+	m.cols = m.matriz[0].size();
 	in.clear();
 	return in;
 }

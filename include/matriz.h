@@ -14,7 +14,7 @@ class Matriz{
 	private:	
 		std::vector<std::vector<TYPE> > matriz;
 		size_t rows = -1, cols = -1;
-		char sep = '\t';
+		char sep = ' ';
 		int rank = -1;
 		bool numtype_quote = (typeid(int).hash_code() != typeid(TYPE).hash_code() && typeid(size_t).hash_code() != typeid(TYPE).hash_code()
 							&& typeid(float).hash_code() != typeid(TYPE).hash_code() && typeid(double).hash_code() != typeid(TYPE).hash_code()

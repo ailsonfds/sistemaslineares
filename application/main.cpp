@@ -1,7 +1,11 @@
 #include "matriz.h"
 #include <fstream>
 
-Matriz<double>& jacobi(Matriz<double>& m, Matriz<double>& x = *(new Matriz<double>(1, 1))){
+Matriz<double>& jacobi(Matriz<double>& m, Matriz<double>& x){
+	std::cout << "Rodei" << std::endl;
+	if (){
+		x = *(new Matriz<double>(m.get_rows(), 1))
+	}
 	if (m.get_rows() == m.get_cols()-1 && m.get_rows() == x.get_rows()){
 		Matriz<double> *x2 = new Matriz<double>(m.get_rows(), 1);
 		for(size_t i = 0; i < m.get_rows(); i++){
@@ -28,7 +32,6 @@ int main(int argc, const char* argv[]){
 		std::cout << "Matriz de ordem " << size << std::endl;
 		Matriz<double> *m = new Matriz<double>(size, size+1);
 		fs >> *m;
-		std::cout << fs.get() << std::endl;
 		std::cout << jacobi(*m); 
 		fs.close();
 	}
